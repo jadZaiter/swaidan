@@ -175,7 +175,3 @@ def add_admin(username, password):
             db.session.add(admin)
         db.session.commit()
 
-if __name__ == '__main__':
-    add_admin('admin', '123')
-    print('Admin user added successfully.')
-    app.run(debug=False,host='0.0.0.0')
