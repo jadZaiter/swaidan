@@ -1,0 +1,27 @@
+body {
+  background-color: #063970;
+  color: white;
+}
+.logo-img {
+  color: whitesmoke;
+
+  font-family: "Roboto", sans-serif; /* Use Roboto font with fallback to sans-serif */
+  font-size: 24px; /* Set font size to 24 pixels */
+  /* Add any additional styling you want for the .logo-img class */
+}
+ul li {
+  list-style: none;
+  text-decoration: none;
+}
+
+ul li a:hover {
+  text-decoration: none;
+}
+.search-btn {
+  background-color: red;
+}
+
+.card-img-custom {
+  height: 200px; /* Adjust this value to set the desired height */
+  object-fit: cover; /* Ensures the image covers the entire container */
+}

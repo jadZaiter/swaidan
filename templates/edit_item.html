@@ -1,0 +1,68 @@
+<!-- templates/edit_item.html -->
+{% extends "bootstrap/base.html" %} {% block title %}Edit Item - {{ item.title
+}}{% endblock %} {% block content %}
+<div class="container">
+  <h2>Edit Item - {{ item.title }}</h2>
+  <form method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+      <label>Title</label>
+      <input
+        type="text"
+        class="form-control"
+        name="title"
+        value="{{ item.title }}"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label>Category</label>
+      <input
+        type="text"
+        class="form-control"
+        name="category"
+        value="{{ item.category }}"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label>Quantity</label>
+      <input
+        type="number"
+        class="form-control"
+        name="quantity"
+        value="{{ item.quantity }}"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label>Details</label>
+      <textarea class="form-control" name="details">
+{{ item.details }}</textarea
+      >
+    </div>
+    <div class="form-group">
+      <label>Price</label>
+      <input
+        type="number"
+        step="0.01"
+        class="form-control"
+        name="price"
+        value="{{ item.price }}"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label>Current Image</label><br />
+      {% if item.image %} <img src="data:image/jpeg;base64,{{ item.image }}
+      class="img-thumbnail" style="max-width: 200px" /> {% else %}
+      <p>No image uploaded</p>
+      {% endif %}
+    </div>
+    <div class="form-group">
+      <label>New Image</label>
+      <input type="file" class="form-control-file" name="image" />
+    </div>
+    <button type="submit" class="btn btn-primary">Update Item</button>
+  </form>
+</div>
+{% endblock %}
