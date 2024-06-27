@@ -1,0 +1,51 @@
+region: ORD1
+
+# A custom DNS entry managed by coreweave to point directly to your ingress controller
+# Will be formatted as '{{.Release.Name}}.{{.Release.Namespace}}.{{ .Values.region }}.coreweave.cloud' unless a subdomainOverride is provided.
+externalDns:
+  enabled: true
+  # Create a DNS record for the ingress Service '{{ .Values.externalDns.subdomainOverride}}.{{.Release.Namespace}}.{{ .Values.region}}.coreweave.cloud'
+  subdomainOverride: ''
+
+# A class name will be generated automatically if empty
+controllerClass: zeet-traefik
+
+# https://docs.traefik.io/observability/logs/
+logs:
+  access:
+    enabled: false
+  general:
+    level: ERROR
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 5
+
+deployment:
+  replicas: 2
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 400Mi
+  limits:
+    cpu: 100m
+    memory: 400Mi
+
+dashboard:
+  enabled: false
+  insecure: true # Default insecure since dashboards shouldn't be exposed by default. 
+
+ports:
+  web: # HTTP ingress
+    container: 8000
+    exposed: 80
+  websecure: # HTTPS ingress
+    container: 8443
+    exposed: 443
+  metrics: # Prometheus 
+    container: 9100
+  traefik: # Internal Traefik 
+    container: 9000
+    exposed: 9000
